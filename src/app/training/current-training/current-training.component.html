@@ -1,0 +1,10 @@
+<section class="current-training" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px">
+  <mat-progress-spinner mode="determinate" [value]="progress"></mat-progress-spinner>
+  <h2>{{progress}}%</h2>
+  <p>Keep going, you cand do it!</p>
+  <div fxFlex fxLayout="row" fxLayoutGap="10px">
+    <button mat-raised-button color="accent" (click)="pausePlayTraining()">{{buttonName}} <mat-icon>{{icon}}</mat-icon></button>
+    <button mat-raised-button (click)="resetTimer()">Reset <mat-icon>replay</mat-icon></button>
+    <button mat-button color="warn" (click)="stopTraining()">Stop <mat-icon>stop</mat-icon></button>
+  </div>
+</section>

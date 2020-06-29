@@ -1,0 +1,12 @@
+<H3>
+Hi, I'm the product component!
+</H3>
+<form fxLayout="column" (ngSubmit)="addProduct(f)" #f="ngForm">  
+  <p fxFlex="50%">
+    <input *ngIf="!isDisabled" type="text" ngModel name="productName" required>
+    <button type="submit">Add</button>
+  </p>
+</form>
+  <div fxLayout="column">
+  <app-product fxLayout="column" fxFlex="70%" *ngFor="let product of products" (productSelected)="remove(product)" [productName]="product"></app-product>
+  </div>

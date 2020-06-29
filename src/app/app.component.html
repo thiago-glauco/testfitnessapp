@@ -1,0 +1,22 @@
+<mat-toolbar color="primary" fxLayout="column">
+ <mat-toolbar-row >
+  <span class="app-title">My Cool Fitness App</span>
+</mat-toolbar-row>
+
+<mat-toolbar-row fxFlex fxLayout="row" fxLayoutAlign="start">
+    <button fxFlex fxFlexAlign="center" mat-icon-button (click)="sideNav.toggle()"><mat-icon>more</mat-icon></button>
+    <div fxFlex="70%" fxFlex.gt-xs="90%"></div>
+    <app-nav-header></app-nav-header>
+</mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav mode="over" #sideNav>
+    <app-nav-sidebar (sidNavToggle)="sideNav.toggle()"></app-nav-sidebar>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    
+   <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

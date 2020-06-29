@@ -1,0 +1,7 @@
+.app-title {
+  margin: 0 auto;
+}
+
+mat-sidenav-container {
+  min-height: 80vh;
+}

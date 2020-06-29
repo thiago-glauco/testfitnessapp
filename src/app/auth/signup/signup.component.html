@@ -1,0 +1,64 @@
+<mat-toolbar>Create an account</mat-toolbar>
+<section class="signup-form">
+  <form fxFlex fxLayout="column" fxLayoutGap="10px"
+  #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <mat-form-field fxFlex>
+      <mat-label>Your e-mail</mat-label>
+      <input
+        matInput
+        type="email"
+        ngModel
+        name="email"
+        #email="ngModel"
+        email
+        required>
+      <mat-icon matSuffix color="primary">email</mat-icon>
+      <mat-hint align="end">e-mail@domain.com</mat-hint>
+      <mat-error *ngIf="email?.hasError('required')">Email is required!</mat-error>
+      <mat-error *ngIf="!email?.hasError('required')">Email is invalid!</mat-error>
+    </mat-form-field>
+    <mat-form-field fxFlex>
+    <mat-label>Insert a Password</mat-label>
+      <input
+        matInput
+        type="password"
+        ngModel
+        name="password"
+        required
+        minlength="6"
+        #pwInput="ngModel">
+      <mat-icon matSuffix color="primary">lock</mat-icon>
+      <mat-hint  align="end">at least 5 characters ({{pwInput.value?.length}})</mat-hint>
+      <mat-error *ngIf="pwInput.hasError('required')">Password is required!</mat-error>
+      <mat-error *ngIf="pwInput.hasError('minlength')">Password must be six characters long!</mat-error>
+    </mat-form-field>
+    <mat-form-field >
+      <mat-label>Inform your birth date</mat-label>
+      <input 
+        matInput
+        [matDatepicker]="picker"
+        [max]="maxDate"
+        ngModel
+        name="birthDate"
+        required
+        >
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="picker" >
+      </mat-datepicker-toggle>
+      <mat-datepicker #picker ></mat-datepicker>
+    </mat-form-field>
+    <mat-checkbox
+     color="primary"
+     ngModel
+     name="agree"
+     #agreeCheck="ngModel"
+     required>I Agree with page terms and conditions.</mat-checkbox>
+    <button
+      [disabled]="form.invalid"
+      fxFlex
+      mat-raised-button
+      type="submit"
+      color="primary">Register <mat-icon>how_to_reg</mat-icon></button>
+  </form>
+</section>

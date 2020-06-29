@@ -1,9 +1,9 @@
 <h2 mat-dialog-title>Are you sure you wanna leave?</h2>
 <mat-dialog-content>
   <p>All your progress will be lost</p>
-  <p>you already done {{progress}} </p>
+  <p>you already done {{receivedData.progress}} </p>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button (click)="continue()" mat-dialog-close >Yes</button>
-  <button mat-raised-button (click)="exit()" mat-dialog-close >No</button>
+  <button mat-button [mat-dialog-close]="true" >Yes</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="false" >No</button>
 </mat-dialog-actions> 

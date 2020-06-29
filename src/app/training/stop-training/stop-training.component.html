@@ -1,0 +1,9 @@
+<h2 mat-dialog-title>Are you sure you wanna leave?</h2>
+<mat-dialog-content>
+  <p>All your progress will be lost</p>
+  <p>you already done {{progress}} </p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="continue()" mat-dialog-close >Yes</button>
+  <button mat-raised-button (click)="exit()" mat-dialog-close >No</button>
+</mat-dialog-actions> 

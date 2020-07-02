@@ -24,7 +24,7 @@ export class AuthService {
 
   logout( ) {
     this.user = null;
-    this.authChange.next( fals );
+    this.authChange.next( false );
   }
 
   getUser( ) {

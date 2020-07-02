@@ -11,6 +11,7 @@ export class AuthService {
       email: authData.email,
       userId: Math.round( Math.random() * 10000 ).toString( )
     }
+    console.log(this.user);
     this.authChange.next( true );
   }
 
@@ -19,11 +20,15 @@ export class AuthService {
       email: authData.email,
       userId: Math.round( Math.random() * 10000 ).toString( )
     }
+    console.log("Loged user:");
+    console.log(this.user);
     this.authChange.next( true );
   }
 
   logout( ) {
     this.user = null;
+    console.log("User logged out:");
+    console.log(this.user);
     this.authChange.next( false );
   }
 

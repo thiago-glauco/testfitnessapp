@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
-import { of, Observable } from 'rxjs';
+import { of, Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-nav-header',
   templateUrl: './nav-header.component.html',
   styleUrls: ['./nav-header.component.css']
 })
-export class NavHeaderComponent implements OnInit {
+export class NavHeaderComponent implements OnInit, OnDestroy {
 
-  hasUserObservable: Observable<any>;
+  hasUserObservable: Subscription;
   hasUser: boolean;
 
   constructor(public authService: AuthService) { }
@@ -21,6 +21,10 @@ export class NavHeaderComponent implements OnInit {
         this.hasUser = data;
     }
    );
+  }
+
+  ngOnDestroy( ) {
+    this.hasUserObservable.unsubscribe( );
   }
 
 }

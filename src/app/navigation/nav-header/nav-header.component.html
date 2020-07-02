@@ -1,12 +1,12 @@
     <nav fxFlex fxLayout="row" fxLayoutAlign="end">
       <a mat-icon-button routerLink='' ><mat-icon>home</mat-icon></a>
       <a mat-icon-button routerLink='/login'
-        *ngIf="!authService.isAuth()"><mat-icon>login</mat-icon></a>
+        *ngIf="!hasUser"><mat-icon>login</mat-icon></a>
       <a mat-icon-button
         routerLink='/signup'
-        *ngIf="!authService.isAuth()"><mat-icon>how_to_reg</mat-icon></a>
+        *ngIf="!hasUser"><mat-icon>how_to_reg</mat-icon></a>
       <a mat-icon-button 
-        (click)="authService.logout()"
+        (click)="hasUser"
         routerLink='' 
-        *ngIf="authService.isAuth()"><mat-icon>exit_to_app</mat-icon></a>
+        *ngIf="hasUser"><mat-icon>exit_to_app</mat-icon></a>
     </nav>

@@ -25,6 +25,5 @@
         color="warn" 
         (click)="onSidNavToggle( )"
         (click)="authService.logout()"
-        routerLink=''
         *ngIf="authService.isAuth()">Exit <mat-icon>exit_to_app</mat-icon></button>
     </nav>

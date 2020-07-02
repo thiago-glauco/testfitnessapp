@@ -23,6 +23,10 @@ export class NavHeaderComponent implements OnInit, OnDestroy {
    );
   }
 
+  logout( ) {
+    this.authService.logout( );
+  }
+
   ngOnDestroy( ) {
     this.hasUserObservable.unsubscribe( );
   }

@@ -6,7 +6,7 @@
         routerLink='/signup'
         *ngIf="!hasUser"><mat-icon>how_to_reg</mat-icon></a>
       <a mat-icon-button 
-        (click)="hasUser"
-        routerLink='' 
-        *ngIf="hasUser"><mat-icon>exit_to_app</mat-icon></a>
+        *ngIf="hasUser"
+        (click)="logout()"
+        ><mat-icon>exit_to_app</mat-icon></a>
     </nav>

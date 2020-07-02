@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../auth/auth.service';
+import { of, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-nav-header',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavHeaderComponent implements OnInit {
 
-  constructor() { }
+  hasUserObservable: Observable<any>;
+  hasUser: boolean;
+
+  constructor(public authService: AuthService) { }
 
   ngOnInit() {
+    this.hasUserObservable = this.authService.authChange.subscribe(
+    ( data ) => {
+        console.log( data );
+        this.hasUser = data;
+    }
+   );
   }
 
 }

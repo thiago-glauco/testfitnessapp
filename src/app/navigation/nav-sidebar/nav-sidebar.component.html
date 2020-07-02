@@ -19,7 +19,8 @@
         (click)="onSidNavToggle( )">Train <mat-icon>fitness_center</mat-icon></button>
       <button
         mat-button
-        color="warn"
-        routerLink='' 
-        (click)="onSidNavToggle( )">Exit <mat-icon>exit_to_app</mat-icon></button>
+        color="warn" 
+        (click)="onSidNavToggle( )"
+        (click)="authService.logout()"
+        routerLink=''>Exit <mat-icon>exit_to_app</mat-icon></button>
     </nav>

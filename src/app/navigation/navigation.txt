@@ -1,0 +1,3 @@
+I created side nav and a navigation bar. The buttons are displayed dinamically, if user is logged in or not.
+In nav-side bar the buttons are connected to AutheService.isAuth( ) method. In nav-header I used an observable.
+Two ways to do the same thing.

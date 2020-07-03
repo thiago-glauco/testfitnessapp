@@ -14,10 +14,10 @@ export class TrainingService {
   ];
 
   private runningExercise: Exercise;
-  runningExerciseSubject: Subject<boolean> = new Subject( );
+  runningExerciseSubject: Subject<Exercise> = new Subject( );
 
   constructor( ) {
-    this.runningExerciseSubject.next( false );
+   
   }
 
   getExercices( ) {
@@ -26,9 +26,15 @@ export class TrainingService {
 
   startExercise( exerciseId: string ) {
     this.runningExercise = this.availableExercices.find( ( exercise ) => {
-      exercise.id === exerciseId;
+      return exercise.id == exerciseId;
     })
-    this.runningExerciseSubject.next( true );
+    console.log( 'running exercise: ' );
+    console.log( this.runningExercise );
+    this.runningExerciseSubject.next( {...this.runningExercise} );
+  }
+
+  exitRunningExercise( ) {
+
   }
 
 }

@@ -10,19 +10,20 @@ import { Subscription } from 'rxjs';
 export class TrainingComponent implements OnInit {
 
   ongoingTraining: boolean = false;
-  ongoingTrainingSubscription: Subscription;
+  execiseSubscription: Subscription;
 
   constructor( private trainingService: TrainingService) { }
 
   ngOnInit( ) {
-    this.ongoingTrainingSubscription = this.trainingService.runningExerciseSubject.subscribe( {
-       next(data) {this.ongoingTraining = data}
-    } );
+    let that = this;
+    this.execiseSubscription = this.trainingService.runningExerciseSubject.subscribe( 
+      exercise => this.ongoingTraining = ( exercise != null ? true : false )
+     );
     
   }
 
   ngOnDestroy( ) {
-    this.ongoingTrainingSubscription.unsubscribe( );
+    this.execiseSubscription.unsubscribe( );
   }
 
 }

@@ -6,8 +6,8 @@
     <mat-card-content fxLayoutAlign="center">
       <mat-form-field>
         <mat-label>Select your training</mat-label>
-        <mat-select>
-          <mat-option *ngFor="let exercise of exercises" value="exercise?.name">
+        <mat-select [(value)]="selectedExercise">
+          <mat-option *ngFor="let exercise of exercises" [value]="exercise?.id">
             {{exercise?.name}}
           </mat-option>
         </mat-select>

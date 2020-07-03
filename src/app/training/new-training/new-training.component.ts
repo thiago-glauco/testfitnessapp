@@ -10,6 +10,7 @@ import { TrainingService } from '../training.service';
 export class NewTrainingComponent implements OnInit {
 
   exercises: Exercise[] = [];
+  selectedExercise: string;
 
   @Output( ) trainingStart = new EventEmitter( );
 
@@ -20,7 +21,8 @@ export class NewTrainingComponent implements OnInit {
   }
 
   onStartTraining( ) {
-    this.trainingStart.emit( );
+    this.trainingService.startExercise( this.selectedExercise );
+    //this.trainingStart.emit( );
   } 
 
 }

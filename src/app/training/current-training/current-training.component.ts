@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { StopTrainingComponent } from '../stop-training/stop-training.component';
+import { TrainingService } from '../TrainingService';
 
 @Component({
   selector: 'app-current-training',

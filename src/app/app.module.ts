@@ -25,6 +25,7 @@ import { NavSidebarComponent } from './navigation/nav-sidebar/nav-sidebar.compon
 import { StopTrainingComponent } from './training/stop-training/stop-training.component';
 
 import { AuthService } from './auth/auth.service';
+import { TrainingService } from './training/training.service';
 
 
 @NgModule({
@@ -39,7 +40,7 @@ import { AuthService } from './auth/auth.service';
   ],
   declarations: [ AppComponent, HelloComponent, ProductsComponent, ProductComponent, HomeComponent, SignupComponent, LoginComponent, TrainingComponent, CurrentTrainingComponent, PastTrainingComponent, NewTrainingComponent, WelcomeComponent, NavHeaderComponent, NavSidebarComponent, StopTrainingComponent ],
   bootstrap:    [ AppComponent ],
-  providers: [ProductsService, AuthService],
+  providers: [ProductsService, AuthService, TrainingService ],
   entryComponents: [StopTrainingComponent]
 })
 export class AppModule { }

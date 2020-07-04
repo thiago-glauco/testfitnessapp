@@ -24,6 +24,10 @@ export class TrainingService {
     return [...this.availableExercices];
   }
 
+  getExercise( ) {
+    return {...this.runningExercise}
+  }
+
   startExercise( exerciseId: string ) {
     this.runningExercise = this.availableExercices.find( ( exercise ) => {
       return exercise.id == exerciseId;

@@ -1,15 +1,20 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, OnDestroy } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { StopTrainingComponent } from '../stop-training/stop-training.component';
-import { TrainingService } from '../TrainingService';
+import { TrainingService } from '../training.service';
+import { Exercise } from '../exercise.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-current-training',
   templateUrl: './current-training.component.html',
   styleUrls: ['./current-training.component.css']
 })
+
 export class CurrentTrainingComponent implements OnInit {
   @Output() trainingExit = new EventEmitter( );
+  currentExercise: Exercise;
+  exerciseSubscription: Subscription = new Subscription( );
   progress: number = 0;
   stopProgress: number;
   running: boolean = true;
@@ -17,14 +22,25 @@ export class CurrentTrainingComponent implements OnInit {
   buttonName: string = 'Pause';
   continue: boolean = true;
 
-  constructor(private dialog: MatDialog) { }
+  constructor( 
+    private dialog: MatDialog,
+    private trainingService: TrainingService,  
+  ) { }
 
   ngOnInit() {
+    this.currentExercise = this.trainingService.getExercise( );
+    let step = (this.currentExercise.duration/100) * 1000;
+    console.log( step );
     this.stopProgress = setInterval( ( ) => {
-      this.progress += 5;
+      this.progress += 1;
       this.progress >= 100 ? clearInterval( this.stopProgress ) : ""; 
-    }, 1000)
+    }, step)
   }
+
+  ngOnDestroy( ) {
+    this.exerciseSubscription.unsubscribe( );
+  }
+
   pausePlayTraining( ) {
     if( this.running ) {
       this.stopTimer( );

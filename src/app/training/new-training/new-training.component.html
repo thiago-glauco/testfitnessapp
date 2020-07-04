@@ -1,20 +1,20 @@
 <section class="new-training" fxLayout fxLayoutAlign="center">
-  <mat-card fxFlex fxFlex.gt-xs="500px">
-    <mat-card-title-group fxLayoutAlign="center">
-      <mat-card-title>Let's start a Workout!</mat-card-title>
-    </mat-card-title-group>
-    <mat-card-content fxLayoutAlign="center">
-      <mat-form-field>
-        <mat-label>Select your training</mat-label>
-        <mat-select [(value)]="selectedExercise">
-          <mat-option *ngFor="let exercise of exercises" [value]="exercise?.id">
-            {{exercise?.name}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </mat-card-content>
-    <mat-card-actions fxLayoutAlign="center">
-      <button color="primary" type="submit" mat-button (click)="onStartTraining()">Start <mat-icon>play_arrow</mat-icon></button>
-    </mat-card-actions>
-  </mat-card>
+    <mat-card fxFlex fxFlex.gt-xs="500px">
+      <mat-card-title-group fxLayoutAlign="center">
+        <mat-card-title>Let's start a Workout!</mat-card-title>
+      </mat-card-title-group>
+      <mat-card-content fxLayoutAlign="center">
+        <mat-form-field>
+          <mat-label>Select your training</mat-label>
+          <mat-select [(value)]="selectedExercise">
+            <mat-option *ngFor="let exercise of exercises" [value]="exercise?.id">
+              {{exercise?.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions fxLayoutAlign="center">
+        <button color="primary" type="submit" [disabled]="selectedExercise !== '' ? false : true" mat-button (click)="onStartTraining()">Start <mat-icon>play_arrow</mat-icon></button>
+      </mat-card-actions>
+    </mat-card>
 </section>

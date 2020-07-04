@@ -14,6 +14,7 @@ export class TrainingService {
   ];
 
   private runningExercise: Exercise;
+  private completedExercises: Exercise[ ] = [];
   runningExerciseSubject: Subject<Exercise> = new Subject( );
 
   constructor( ) {
@@ -35,6 +36,16 @@ export class TrainingService {
     console.log( 'running exercise: ' );
     console.log( this.runningExercise );
     this.runningExerciseSubject.next( {...this.runningExercise} );
+  }
+
+  cancelExercise( ) {
+
+  }
+
+  completeExercise( ) {
+    this.completedExercises.push( {...this.runningExercise } );
+    this.runningExercise = null;
+    this.runningExerciseSubject.next( null );
   }
 
   exitRunningExercise( ) {

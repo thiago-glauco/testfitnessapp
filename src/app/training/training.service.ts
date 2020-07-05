@@ -43,7 +43,10 @@ export class TrainingService {
   }
 
   completeExercise( ) {
-    this.completedExercises.push( {...this.runningExercise } );
+    this.completedExercises.push( {
+      ...this.runningExercise,
+      date: new Date( ),
+    } );
     this.runningExercise = null;
     this.runningExerciseSubject.next( null );
   }

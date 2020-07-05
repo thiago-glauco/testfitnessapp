@@ -29,8 +29,6 @@ export class CurrentTrainingComponent implements OnInit {
 
   ngOnInit() {
     this.currentExercise = this.trainingService.getExercise( );
-    let step = (this.currentExercise.duration/100) * 1000;
-    console.log( step );
     this.startTimer( );
   }
 
@@ -53,8 +51,9 @@ export class CurrentTrainingComponent implements OnInit {
 
   private startTimer( ) {
     let step = (this.currentExercise.duration/100) * 1000;
+    console.log( step );
     this.stopProgress = setInterval( ( ) => {
-      console.log( step );
+      this.progress += 1;
       if (this.progress >= 100) { 
         this.trainingService.completeExercise( );
       }

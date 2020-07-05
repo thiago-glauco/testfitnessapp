@@ -3,7 +3,7 @@ This is an application for practice, learning and show the use of Angular Materi
 
 I used side menus and tab menus for navigation.
 
-This version has no mockup data or serverless implementation.
+This version has mockup data but no serverless implementation.
 
 I'm working in a fork of this project with mock data and another with firebase implementation.
 

@@ -13,9 +13,10 @@ import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCardModule } from '@angular/material/card';
-import {MatSelectModule} from '@angular/material/select';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatSelectModule } from '@angular/material/select';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatDialogModule} from '@angular/material/dialog';
+import { MatTableModule } from '@angular/material/table';
 
 //Observation: Ivy is incompatible with MatDatepickerModule 
 //https://github.com/angular/components/issues/18637
@@ -37,7 +38,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatCardModule,
     MatSelectModule,
     MatProgressSpinnerModule,
-    MatDialogModule    
+    MatDialogModule,
+    MatTableModule    
   ],
   exports: [
     MatButtonModule,
@@ -55,7 +57,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatCardModule,
     MatSelectModule,
     MatProgressSpinnerModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTableModule
    ],
   providers: [
     MatDatepickerModule

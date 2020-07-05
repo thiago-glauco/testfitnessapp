@@ -20,7 +20,7 @@ export class PastTrainingComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.dataSource = this.trainingService.getPastExercises( ); 
+
   }
 
   ngOnDestroy( ) {

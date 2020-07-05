@@ -38,8 +38,15 @@ export class TrainingService {
     this.runningExerciseSubject.next( {...this.runningExercise} );
   }
 
-  cancelExercise( ) {
-
+  cancelExercise( progress: number ) {
+    this.completedExercises.push( {
+      ...this.runningExercise,
+      date: new Date( ),
+      duration: this.runningExercise.duration * (progress/100),
+      calories: this.runningExercise.calories * (progress/100),
+    } );
+    this.runningExercise = null;
+    this.runningExerciseSubject.next( null );
   }
 
   completeExercise( ) {

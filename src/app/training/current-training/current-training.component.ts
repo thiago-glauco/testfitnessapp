@@ -31,10 +31,7 @@ export class CurrentTrainingComponent implements OnInit {
     this.currentExercise = this.trainingService.getExercise( );
     let step = (this.currentExercise.duration/100) * 1000;
     console.log( step );
-    this.stopProgress = setInterval( ( ) => {
-      this.progress += 1;
-      this.progress >= 100 ? clearInterval( this.stopProgress ) : ""; 
-    }, step)
+    this.startTimer( );
   }
 
   ngOnDestroy( ) {
@@ -55,10 +52,13 @@ export class CurrentTrainingComponent implements OnInit {
   }
 
   private startTimer( ) {
+    let step = (this.currentExercise.duration/100) * 1000;
     this.stopProgress = setInterval( ( ) => {
-      this.progress += 5;
-      this.progress >= 100 ? clearInterval( this.stopProgress ) : ""; 
-    }, 1000 )
+      console.log( step );
+      if (this.progress >= 100) { 
+        this.trainingService.completeExercise( );
+      }
+    }, step )
   }
 
   
@@ -86,7 +86,7 @@ export class CurrentTrainingComponent implements OnInit {
       console.log('The dialog was closed');
       this.continue = result;
       console.log( this.continue );
-      result ? this.trainingExit.emit( ) : this.pausePlayTraining( );
+      result ? this.trainingService.cancelExercise( this.progress ) : this.pausePlayTraining( );
     });
 
     console.log(  this.continue );

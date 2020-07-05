@@ -61,6 +61,10 @@ export class TrainingService {
     this.completedExercisesSubject.next( [...this.completedExercises] )
   }
 
+  getPastExercises( ) {
+    return [...this.completedExercises]
+  }
+
   exitRunningExercise( ) {
 
   }

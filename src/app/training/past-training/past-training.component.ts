@@ -11,7 +11,7 @@ export class PastTrainingComponent implements OnInit {
 
   displayedColumns: string[] = ['date', 'name'];
   pastExercisesSubscription: Subscription;
-  dataSource; 
+  dataSource = this.trainingService.getPastExercises( ); 
 
   constructor(
     private trainingService: TrainingService
@@ -19,7 +19,7 @@ export class PastTrainingComponent implements OnInit {
 
   ngOnInit() {
     this.pastExercisesSubscription = this.trainingService
-      .completedExercisesSubject.subscribe( (exercises) => this.dataSource = exercises );
+      .completedExercisesSubject.subscribe( exercises => this.dataSource = exercises );
   }
 
   ngOnDestroy( ) {

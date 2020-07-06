@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
 })
 export class PastTrainingComponent implements OnInit {
 
-  displayedColumns: string[] = ['date', 'name', 'calories'];
+  displayedColumns: string[] = ['date', 'name', 'calories', 'duration', 'state'];
   pastExercisesSubscription: Subscription;
   dataSource = new MatTableDataSource<Exercise>(this.trainingService.getPastExercises( )); 
 

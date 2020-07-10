@@ -1,6 +1,10 @@
 <section fxLayout="column" fxLayoutGap="10px">
 <div class="search" fxLayout="row" fxLayoutAlign="end center" fxFlex FxlayoutGap="5px">
 <mat-icon matPrefix>search</mat-icon><input type="text" (keyup)="doFilter($event.target.value)">
+<mat-paginator fxFlex="start" [length]="100"
+              [pageSize]="10"
+              [pageSizeOptions]="[5, 10, 25, 100]">
+</mat-paginator>
 </div>
 <table fxFlex mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
   <ng-container matColumnDef="date">
@@ -27,4 +31,5 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+
 </section>

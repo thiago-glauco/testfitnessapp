@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild } from '@angular/core';
 import { TrainingService } from '../training.service';
 import {MatSort} from '@angular/material/sort';
+import {MatPaginator} from '@angular/material/paginator';
  
 import {MatTableDataSource} from '@angular/material/table';
 import { Exercise } from '../exercise.model';
@@ -17,7 +18,8 @@ export class PastTrainingComponent implements OnInit, AfterViewInit, OnDestroy {
   pastExercisesSubscription: Subscription;
   dataSource = new MatTableDataSource<Exercise>(); 
 
-  @ViewChild(MatSort, {static: false}) sort: MatSort;
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatSort;
 
   doFilter(filterString: string) {
     this.dataSource.filter = filterString.trim( ).toLowerCase( );
@@ -33,6 +35,7 @@ export class PastTrainingComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit( ) {
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 
   ngOnDestroy( ) {

@@ -18,6 +18,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatDialogModule} from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 //Observation: Ivy is incompatible with MatDatepickerModule 
 //https://github.com/angular/components/issues/18637
@@ -41,7 +42,8 @@ import { MatSortModule } from '@angular/material/sort';
     MatProgressSpinnerModule,
     MatDialogModule,
     MatTableModule,
-    MatSortModule    
+    MatSortModule,
+    MatPaginatorModule    
   ],
   exports: [
     MatButtonModule,
@@ -61,7 +63,8 @@ import { MatSortModule } from '@angular/material/sort';
     MatProgressSpinnerModule,
     MatDialogModule,
     MatTableModule,
-    MatSortModule
+    MatSortModule,
+    MatPaginatorModule
    ],
   providers: [
     MatDatepickerModule

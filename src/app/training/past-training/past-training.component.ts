@@ -19,6 +19,10 @@ export class PastTrainingComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild(MatSort, {static: false}) sort: MatSort;
 
+  doFilter(filterString: string) {
+    this.dataSource.filter = filterString.trim( ).toLowerCase( );
+  }
+
   constructor(
     private trainingService: TrainingService
   ) { }

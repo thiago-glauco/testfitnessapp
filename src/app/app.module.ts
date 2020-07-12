@@ -26,6 +26,17 @@ import { StopTrainingComponent } from './training/stop-training/stop-training.co
 
 import { AuthService } from './auth/auth.service';
 import { TrainingService } from './training/training.service';
+import { WelcomeComponent } from './welcome/welcome.component';
+import { NavHeaderComponent } from './navigation/nav-header/nav-header.component';
+import { NavSidebarComponent } from './navigation/nav-sidebar/nav-sidebar.component';
+import { StopTrainingComponent } from './training/stop-training/stop-training.component';
+
+import { AuthService } from './auth/auth.service';
+import { TrainingService } from './training/training.service';
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { ENVIRONMENT } from './environment/environment';
 
 
 @NgModule({
@@ -36,7 +47,8 @@ import { TrainingService } from './training/training.service';
     AppRoutingModule,
     FlexLayoutModule,
     MaterialModule,
-    
+    AngularFireModule.initializeApp(ENVIRONMENT.firebase),
+    AngularFirestoreModule
   ],
   declarations: [ AppComponent, HelloComponent, ProductsComponent, ProductComponent, HomeComponent, SignupComponent, LoginComponent, TrainingComponent, CurrentTrainingComponent, PastTrainingComponent, NewTrainingComponent, WelcomeComponent, NavHeaderComponent, NavSidebarComponent, StopTrainingComponent ],
   bootstrap:    [ AppComponent ],

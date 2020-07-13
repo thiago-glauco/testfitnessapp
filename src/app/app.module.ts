@@ -36,6 +36,7 @@ import { TrainingService } from './training/training.service';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { ENVIRONMENT } from './environment/environment';
 
 
@@ -48,7 +49,8 @@ import { ENVIRONMENT } from './environment/environment';
     FlexLayoutModule,
     MaterialModule,
     AngularFireModule.initializeApp(ENVIRONMENT.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AngularFireAuthModule
   ],
   declarations: [ AppComponent, HelloComponent, ProductsComponent, ProductComponent, HomeComponent, SignupComponent, LoginComponent, TrainingComponent, CurrentTrainingComponent, PastTrainingComponent, NewTrainingComponent, WelcomeComponent, NavHeaderComponent, NavSidebarComponent, StopTrainingComponent ],
   bootstrap:    [ AppComponent ],

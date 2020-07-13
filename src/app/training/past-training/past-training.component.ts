@@ -30,7 +30,16 @@ export class PastTrainingComponent implements OnInit, AfterViewInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.dataSource.data = this.trainingService.getPastExercises( );
+    this.trainingService.fetchPastExercises( );
+    this.pastExercisesSubscription = this.trainingService
+      .completedExercisesSubject
+      .subscribe( (exercises: Exercise) => {
+        exercises.forEach( (exercise) => {
+          console.log(exercise.date);
+          exercise.date = exercise.date.toLocaleString( )
+        } );
+        this.dataSource.data = exercises
+      } );
   }
 
   ngAfterViewInit( ) {
@@ -39,7 +48,7 @@ export class PastTrainingComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy( ) {
-
+    this.pastExercisesSubscription.unsubscribe( );
   }
 
 }

@@ -32,14 +32,18 @@ export class AuthService {
   }
 
   loginUser( authData: AuthData ) {
-    this.user = {
-      email: authData.email,
-      userId: Math.round( Math.random() * 10000 ).toString( )
-    }
-    this.loginSuccess( );
+    this.afAuth
+      .signInWithEmailAndPassword(authData.email, authData.password)
+      .then( (result) => {
+        this.loginSuccess( );
+      })
+      .catch( (err) => {
+        console.log(err);
+      });
   }
 
   logout( ) {
+    this.afAuth.signOut( );
     //when user logs out we redirect it to home page.
     this.user = null;
     console.log("User logged out:");

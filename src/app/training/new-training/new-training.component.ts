@@ -1,8 +1,8 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, OnDestroy, EventEmitter, Output } from '@angular/core';
 import { Exercise } from '../exercise.model';
 import { TrainingService } from '../training.service';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -12,7 +12,8 @@ import { map } from 'rxjs/operators';
 })
 export class NewTrainingComponent implements OnInit {
 
-  exercises: Observable<Exercise[ ]>;
+  exercises:Exercise[ ];
+  exerciseSubscription: Subscription = new Subscription( );
   selectedExercise: string = '';
 
   @Output( ) trainingStart = new EventEmitter( );
@@ -22,18 +23,14 @@ export class NewTrainingComponent implements OnInit {
     private angularFirestore: AngularFirestore ) { }
 
   ngOnInit() {
-    this.exercises = this.angularFirestore
-      .collection('availableExercises')
-      .snapshotChanges( )
-      .pipe(
-       map( docArray => {
-         return docArray.map( exercise => {
-           return {
-             id: exercise.payload.doc.id,
-             ... exercise.payload.doc.data( ) }
-         })
-       })
-      )
+    this.trainingService.fetchExercises( );
+    this.exerciseSubscription = this.trainingService
+      .exercisesChanged
+      .subscribe( exercises => this.exercises = exercises );
+  }
+
+  ngOnDestroy( ) {
+    this.exerciseSubscription.unsubscribe( );
   }
 
   onStartTraining( ) {

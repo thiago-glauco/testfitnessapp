@@ -13,7 +13,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 
 export class AuthService {
   authChange = new Subject<boolean>( );
-  private user: User;
+  private isAuthenticated: boolean = false;
 
   constructor( 
     private router: Router,
@@ -45,7 +45,7 @@ export class AuthService {
   logout( ) {
     this.afAuth.signOut( );
     //when user logs out we redirect it to home page.
-    this.user = null;
+    this.isAuthenticated = false;
     console.log("User logged out:");
     console.log(this.user);
     this.authChange.next( false );
@@ -57,12 +57,13 @@ export class AuthService {
   }
 
   isAuth( ) {
-      return this.user != null;
+      return this.isAuthenticated;
   }
 
   private loginSuccess( ) {
     //when user logs in we redirect it to training page.
     this.authChange.next( true );
+    this.isAuthenticated = true;
     console.log("Loged user:");
     console.log(this.user);
     this.router.navigate( ['/training'] );

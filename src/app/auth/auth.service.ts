@@ -8,6 +8,7 @@ import { User } from './user.module';
 import { AuthData } from './auth-data.module';
 import { Subject } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { TrainingService } from '../training/training.service';
 
 @Injectable()
 
@@ -17,7 +18,8 @@ export class AuthService {
 
   constructor( 
     private router: Router,
-    private afAuth: AngularFireAuth ) {
+    private afAuth: AngularFireAuth,
+    private trainingService: TrainingService ) {
 
   }
 
@@ -46,6 +48,7 @@ export class AuthService {
     this.afAuth.signOut( );
     //when user logs out we redirect it to home page.
     this.isAuthenticated = false;
+    this.trainingService.cancelSubscriptions( );
     console.log("User logged out:");
     console.log(this.user);
     this.authChange.next( false );

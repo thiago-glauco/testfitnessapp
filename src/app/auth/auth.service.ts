@@ -9,17 +9,20 @@ import { AuthData } from './auth-data.module';
 import { Subject } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { TrainingService } from '../training/training.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Injectable()
 
 export class AuthService {
+
   authChange = new Subject<boolean>( );
   private isAuthenticated: boolean = false;
 
   constructor( 
     private router: Router,
     private afAuth: AngularFireAuth,
-    private trainingService: TrainingService ) {
+    private trainingService: TrainingService,
+    private snackBar: MatSnackBar ) {
 
   }
 
@@ -30,7 +33,7 @@ export class AuthService {
         console.log(result);
         this.loginSuccess( );
       })
-      .catch( (err) => console.log(err) );
+      .catch( (err) => this.onError(err)  );
   }
 
   loginUser( authData: AuthData ) {
@@ -39,9 +42,7 @@ export class AuthService {
       .then( (result) => {
         this.loginSuccess( );
       })
-      .catch( (err) => {
-        console.log(err);
-      });
+      .catch( (err) => this.onError(err) );
   }
 
   logout( ) {
@@ -49,14 +50,12 @@ export class AuthService {
     //when user logs out we redirect it to home page.
     this.isAuthenticated = false;
     this.trainingService.cancelSubscriptions( );
-    console.log("User logged out:");
-    console.log(this.user);
     this.authChange.next( false );
     this.router.navigate( [''] );
   }
 
   getUser( ) {
-    return {...this.user};
+
   }
 
   isAuth( ) {
@@ -67,9 +66,11 @@ export class AuthService {
     //when user logs in we redirect it to training page.
     this.authChange.next( true );
     this.isAuthenticated = true;
-    console.log("Loged user:");
-    console.log(this.user);
     this.router.navigate( ['/training'] );
+  }
+
+  private onError( err ) {
+    this.snackBar.open( err.message, '', { duration: 5000 } )
   }
 
 }

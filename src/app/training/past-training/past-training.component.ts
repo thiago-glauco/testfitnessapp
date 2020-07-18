@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild } from '@angular/core';
 import { TrainingService } from '../training.service';
+import { UiService } from '../../shared/ui.service';
 import {MatSort} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
  
@@ -16,7 +17,10 @@ export class PastTrainingComponent implements OnInit, AfterViewInit, OnDestroy {
 
   displayedColumns: string[] = ['date', 'name', 'calories', 'duration', 'state'];
   pastExercisesSubscription: Subscription;
+  waitExercise: Subscription;
+  hasLoadedExercise: boolean = false;
   dataSource = new MatTableDataSource<Exercise>(); 
+
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatSort;
@@ -26,10 +30,14 @@ export class PastTrainingComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   constructor(
-    private trainingService: TrainingService
+    private trainingService: TrainingService,
+    private uiService: UiService
   ) { }
 
   ngOnInit() {
+    this.waitExercise = this.uiService.waitDatabaseSubscription.subscribe(
+      ( loaded: boolean ) => this.hasLoadedExercise = loaded
+    );
     this.trainingService.fetchPastExercises( );
     this.pastExercisesSubscription = this.trainingService
       .completedExercisesSubject

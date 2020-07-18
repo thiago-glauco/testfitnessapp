@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Exercise } from './exercise.model';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { UiService } from '../shared/ui.service';
 import { Observable, Subscription, Subject, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -16,11 +17,14 @@ export class TrainingService {
   completedExercisesSubject: Subject<Exercise[]> = new Subject( );
   private firebaseSubscriptions: Subscription[] = [];
 
-  constructor(private db: AngularFirestore ) {
+  constructor(
+    private db: AngularFirestore,
+    private uiService: UiService ) {
    
   }
 
   fetchExercises( ) {
+    this.uiService.waitDatabaseSubscription.next( true );
     this.firebaseSubscriptions
     .push(
       this.db
@@ -37,6 +41,11 @@ export class TrainingService {
         ).subscribe( ( exercises: Exercise[] ) => {
           this.availableExercices = exercises;
           this.exercisesChanged.next( [... this.availableExercices ] );
+          this.uiService.waitDatabaseSubscription.next( false )
+        },
+        (err) => {
+          console.log( err.message );
+          this.uiService.waitDatabaseSubscription.next( false )
         } )
     );
   }
@@ -83,6 +92,7 @@ export class TrainingService {
   }
 
   fetchPastExercises( ) {
+    this.uiService.waitDatabaseSubscription.next( true );
     this.firebaseSubscriptions
       .push(
         this.db
@@ -90,7 +100,12 @@ export class TrainingService {
           .valueChanges( )
           .subscribe( (exercises: Exercise[]) => {
             this.completedExercisesSubject.next( exercises );
-      })
+            this.uiService.waitDatabaseSubscription.next( false );
+          },
+          (err) => {
+            console.log(err.message);
+            this.uiService.waitDatabaseSubscription.next( false );
+          })
     );
   }
 

@@ -7,5 +7,7 @@ export class UiService {
 
 waitAuthSubscription: Subject<boolean> = new Subject( );
 
+waitDatabaseSubscription: Subject<boolean> = new Subject( );
+
 
 }

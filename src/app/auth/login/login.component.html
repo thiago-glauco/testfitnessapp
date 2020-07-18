@@ -1,6 +1,6 @@
 <mat-toolbar>Login</mat-toolbar>
 <section class="signup-form">
-  <form fxFlex fxLayout="column" fxLayoutGap="10px"
+  <form *ngIf="!waitingAuth" fxFlex fxLayout="column" fxLayoutGap="10px"
   #form="ngForm" (ngSubmit)="onSubmit(form)">
     <mat-form-field fxFlex>
       <mat-label>Your e-mail</mat-label>
@@ -40,3 +40,6 @@
       color="primary">Login <mat-icon>login</mat-icon></button>
   </form>
 </section>
+  <mat-card *ngIf="waitingAuth" >
+    <mat-spinner [diameter]="50"></mat-spinner>
+  </mat-card>

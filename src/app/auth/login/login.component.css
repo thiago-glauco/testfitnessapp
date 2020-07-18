@@ -12,3 +12,16 @@ mat-form-field, mat-checkbox, button {
 mat-toolbar {
   justify-content: center;
 }
+
+spinner {
+  width: 110px;
+  margin: 50px auto;
+  padding: 0 auto;
+}
+
+mat-spinner {
+  width: 100px;
+  align-self: center;
+  margin: 20px auto;
+  padding: 10px;
+}

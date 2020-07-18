@@ -14,14 +14,8 @@ mat-toolbar {
 }
 
 spinner {
-  width: 110px;
-  margin: 50px auto;
+  width: 100px;
+  margin: 0 auto;
   padding: 0 auto;
 }
 
-mat-spinner {
-  width: 100px;
-  align-self: center;
-  margin: 20px auto;
-  padding: 10px;
-}

@@ -14,9 +14,11 @@ import { NewTrainingComponent } from './new-training/new-training.component';
     TrainingComponent,
     CurrentTrainingComponent,
     PastTrainingComponent,
-    StopTrainingComponent
+    StopTrainingComponent,
+    NewTrainingComponent
    ],
   imports: [
+    CommonModule,
     MaterialModule,
     FlexLayoutModule,
     FormsModule

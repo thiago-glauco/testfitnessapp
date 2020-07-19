@@ -5,14 +5,14 @@
   fxLayout.xs="column"
   fxLayoutAlign="end center" 
   FxlayoutGap="5px">
-<div fxFlex>
-  <mat-icon matPrefix>search</mat-icon><input type="text" (keyup)="doFilter($event.target.value)">
-</div>
-<div fxHide.lt-sm fxFlex="50%"></div>
-<mat-paginator fxFlex="end" [length]="100"
-              [pageSize]="10"
-              [pageSizeOptions]="[5, 10, 25, 100]">
-</mat-paginator>
+  <div fxFlex fxFlexAlign="center" fxLayout="row">
+    <mat-icon matPrefix>search</mat-icon><input type="text" (keyup)="doFilter($event.target.value)">
+  </div>
+  <div fxHide.lt-sm fxFlex="50%"></div>
+  <mat-paginator fxFlex="end" [length]="100"
+                [pageSize]="10"
+                [pageSizeOptions]="[5, 10, 25, 100]">
+  </mat-paginator>
 </div>
 <table *ngIf="!hasLoadedExercise" fxFlex mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
   <ng-container matColumnDef="date">

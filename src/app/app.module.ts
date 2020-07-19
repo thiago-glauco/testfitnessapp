@@ -14,30 +14,15 @@ import { ProductComponent } from './product/product.component';
 import { HomeComponent } from './home/home.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AuthModule } from './auth/auth.module';
-import { TrainingComponent } from './training/training.component';
-import { CurrentTrainingComponent } from './training/current-training/current-training.component';
-import { PastTrainingComponent } from './training/past-training/past-training.component';
-import { NewTrainingComponent } from './training/new-training/new-training.component';
-import { WelcomeComponent } from './welcome/welcome.component';
-import { NavHeaderComponent } from './navigation/nav-header/nav-header.component';
-import { NavSidebarComponent } from './navigation/nav-sidebar/nav-sidebar.component';
-import { StopTrainingComponent } from './training/stop-training/stop-training.component';
-
+import { TrainingModule } from './training/training.module';
 import { UiService } from './shared/ui.service';
-
 import { AuthService } from './auth/auth.service';
 import { TrainingService } from './training/training.service';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { NavHeaderComponent } from './navigation/nav-header/nav-header.component';
 import { NavSidebarComponent } from './navigation/nav-sidebar/nav-sidebar.component';
-import { StopTrainingComponent } from './training/stop-training/stop-training.component';
-
-import { AuthService } from './auth/auth.service';
-import { TrainingService } from './training/training.service';
-
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { AngularFireAuthModule } from '@angular/fire/auth';
 import { ENVIRONMENT } from './environment/environment';
 
 
@@ -51,12 +36,21 @@ import { ENVIRONMENT } from './environment/environment';
     MaterialModule,
     AngularFireModule.initializeApp(ENVIRONMENT.firebase),
     AngularFirestoreModule,
-    AngularFireAuthModule,
-    AuthModule
+    AuthModule,
+    TrainingModule
   ],
-  declarations: [ AppComponent, HelloComponent, ProductsComponent, ProductComponent, HomeComponent, TrainingComponent, CurrentTrainingComponent, PastTrainingComponent, NewTrainingComponent, WelcomeComponent, NavHeaderComponent, NavSidebarComponent, StopTrainingComponent ],
+  declarations: [
+    AppComponent,
+    HelloComponent,
+    ProductsComponent,
+    ProductComponent,
+    HomeComponent,
+    WelcomeComponent,
+    NavHeaderComponent,
+    NavSidebarComponent,
+  ],
   bootstrap:    [ AppComponent ],
   providers: [ProductsService, AuthService, TrainingService, UiService ],
-  entryComponents: [StopTrainingComponent]
+  entryComponents: [ ]
 })
 export class AppModule { }

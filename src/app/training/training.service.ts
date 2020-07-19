@@ -45,7 +45,10 @@ export class TrainingService {
         },
         (err) => {
           console.log( err.message );
-          this.uiService.waitDatabaseSubscription.next( false )
+          this.uiService.waitDatabaseSubscription.next( false );
+          this.availableExercices = [];
+          this.exercisesChanged.next( null );
+          this.uiService.snackBarError( err );
         } )
     );
   }
@@ -105,6 +108,7 @@ export class TrainingService {
           (err) => {
             console.log(err.message);
             this.uiService.waitDatabaseSubscription.next( false );
+            this.uiService.snackBarError( err );
           })
     );
   }
@@ -121,7 +125,9 @@ export class TrainingService {
   }
 
   private addDataToDatabase(exercise: Exercise) {
-    this.db.collection('finishedExercises').add(exercise);
+    this.db.collection('finishedExercises').add(exercise)
+    .then( ( result ) => { console.log( "data added to firestore") } )
+    .catch( ( err ) => this.uiService.snackBarError( err ) );
   }
 
 }

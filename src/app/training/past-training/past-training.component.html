@@ -14,7 +14,7 @@
                 [pageSizeOptions]="[5, 10, 25, 100]">
   </mat-paginator>
 </div>
-<table fxFlex *ngIf="!hasLoadedExercise" fxFlex mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+<table fxFlex fxFlex mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
   <ng-container matColumnDef="date">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
     <td mat-cell *matCellDef="let element"> {{element.date | date: 'dd MMM yyyy' }} </td>

@@ -13,8 +13,7 @@ import { ProductsService } from './services/products.service';
 import { ProductComponent } from './product/product.component';
 import { HomeComponent } from './home/home.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { SignupComponent } from './auth/signup/signup.component';
-import { LoginComponent } from './auth/login/login.component';
+import { AuthModule } from './auth/auth.module';
 import { TrainingComponent } from './training/training.component';
 import { CurrentTrainingComponent } from './training/current-training/current-training.component';
 import { PastTrainingComponent } from './training/past-training/past-training.component';
@@ -52,9 +51,10 @@ import { ENVIRONMENT } from './environment/environment';
     MaterialModule,
     AngularFireModule.initializeApp(ENVIRONMENT.firebase),
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AuthModule
   ],
-  declarations: [ AppComponent, HelloComponent, ProductsComponent, ProductComponent, HomeComponent, SignupComponent, LoginComponent, TrainingComponent, CurrentTrainingComponent, PastTrainingComponent, NewTrainingComponent, WelcomeComponent, NavHeaderComponent, NavSidebarComponent, StopTrainingComponent ],
+  declarations: [ AppComponent, HelloComponent, ProductsComponent, ProductComponent, HomeComponent, TrainingComponent, CurrentTrainingComponent, PastTrainingComponent, NewTrainingComponent, WelcomeComponent, NavHeaderComponent, NavSidebarComponent, StopTrainingComponent ],
   bootstrap:    [ AppComponent ],
   providers: [ProductsService, AuthService, TrainingService, UiService ],
   entryComponents: [StopTrainingComponent]

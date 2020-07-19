@@ -28,7 +28,9 @@ export class NavHeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy( ) {
-    this.hasUserObservable.unsubscribe( );
+    if ( this.hasUserObservable ) {
+      this.hasUserObservable.unsubscribe( );
+    }
   }
 
 }

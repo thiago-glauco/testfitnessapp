@@ -33,7 +33,9 @@ export class CurrentTrainingComponent implements OnInit {
   }
 
   ngOnDestroy( ) {
-    this.exerciseSubscription.unsubscribe( );
+    if ( this.exerciseSubscription ){
+      this.exerciseSubscription.unsubscribe( );
+    }
   }
 
   pausePlayTraining( ) {

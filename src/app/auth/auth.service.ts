@@ -36,7 +36,10 @@ export class AuthService {
         console.log(result);
         this.loginSuccess( );
       })
-      .catch( (err) => this.uiService.waitAuthSubscription.next( false )  );
+      .catch( (err) => {
+        this.uiService.waitAuthSubscription.next( false )
+        this.onError(err);
+        }  );
   }
 
   loginUser( authData: AuthData ) {
@@ -48,7 +51,7 @@ export class AuthService {
       })
       .catch( (err) => {
         this.uiService.waitAuthSubscription.next( false );
-        this.onError(err)
+        this.onError(err);
       } );
   }
 

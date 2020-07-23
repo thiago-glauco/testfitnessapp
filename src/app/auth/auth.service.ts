@@ -8,6 +8,8 @@ import { User } from './user.module';
 import { AuthData } from './auth-data.module';
 import { Subject } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { Store } from '@ngrx/store';
+
 import { TrainingService } from '../training/training.service';
 import { UiService } from '../shared/ui.service';
 
@@ -22,9 +24,9 @@ export class AuthService {
     private router: Router,
     private afAuth: AngularFireAuth,
     private trainingService: TrainingService,
-    private uiService: UiService ) {
-
-  }
+    private uiService: UiService,
+    private store: Store
+  ) { }
 
   registerUser( authData: AuthData ) {
     this.uiService.waitAuthSubscription.next( true );

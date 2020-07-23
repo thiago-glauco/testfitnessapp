@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import {  BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
-
+import { StoreModule } from '@ngrx/store';
 
 import { AppComponent } from './app.component';
 import { HelloComponent } from './hello.component';
@@ -24,7 +24,7 @@ import { NavSidebarComponent } from './navigation/nav-sidebar/nav-sidebar.compon
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { ENVIRONMENT } from './environment/environment';
-
+import { appReducer } from './app.reducer';
 
 @NgModule({
   imports:      [ 
@@ -37,7 +37,8 @@ import { ENVIRONMENT } from './environment/environment';
     AngularFireModule.initializeApp(ENVIRONMENT.firebase),
     AngularFirestoreModule,
     AuthModule,
-    TrainingModule
+    TrainingModule,
+    StoreModule.forRoot( { ui: appReducer } )
   ],
   declarations: [
     AppComponent,

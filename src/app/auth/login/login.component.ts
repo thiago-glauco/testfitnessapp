@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit( ) {
     this.loadingState$ = this.store.pipe(
-      map( stateObj => stateObj.ui ) );
+      map( (stateObj) => {console.log(stateObj.ui.isLoading); return stateObj.ui.isLoading} ) );
     this.uiSubscription = this.uiService.waitAuthSubscription.subscribe(
       ( authStatus ) => this.waitingAuth = authStatus
      );

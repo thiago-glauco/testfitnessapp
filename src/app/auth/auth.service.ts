@@ -9,6 +9,7 @@ import { AuthData } from './auth-data.module';
 import { Subject } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Store } from '@ngrx/store';
+import * as fromApp from '../app.reducer';
 
 import { TrainingService } from '../training/training.service';
 import { UiService } from '../shared/ui.service';
@@ -25,11 +26,12 @@ export class AuthService {
     private afAuth: AngularFireAuth,
     private trainingService: TrainingService,
     private uiService: UiService,
-    private store: Store
+    private store: Store<{ui: fromApp.State}>
   ) { }
 
   registerUser( authData: AuthData ) {
-    this.uiService.waitAuthSubscription.next( true );
+    //this.uiService.waitAuthSubscription.next( true );
+    this.store.dispatch({type: 'START_LOADING'});
     this.afAuth
       .createUserWithEmailAndPassword(authData.email, authData.password)
       .then( (result) => {
@@ -37,20 +39,23 @@ export class AuthService {
         this.loginSuccess( );
       })
       .catch( (err) => {
-        this.uiService.waitAuthSubscription.next( false )
+        //this.uiService.waitAuthSubscription.next( false )
+        this.store.dispatch({type: 'STOP_LOADING'});
         this.uiService.snackBarError(err);
         }  );
   }
 
   loginUser( authData: AuthData ) {
-    this.uiService.waitAuthSubscription.next( true );
+    //this.uiService.waitAuthSubscription.next( true );
+    this.store.dispatch({type: 'START_LOADING'});
     this.afAuth
       .signInWithEmailAndPassword(authData.email, authData.password)
       .then( (result) => {
         this.loginSuccess( );
       })
       .catch( (err) => {
-        this.uiService.waitAuthSubscription.next( false );
+        //this.uiService.waitAuthSubscription.next( false );
+        this.store.dispatch({type: 'STOP_LOADING'});
         this.uiService.snackBarError(err);
       } );
   }
@@ -75,7 +80,8 @@ export class AuthService {
   private loginSuccess( ) {
     //when user logs in we redirect it to training page.
     this.authChange.next( true );
-    this.uiService.waitAuthSubscription.next( false );
+    //this.uiService.waitAuthSubscription.next( false );
+    this.store.dispatch({type: 'STOP_LOADING'});
     this.isAuthenticated = true;
     this.router.navigate( ['/training'] );
   }

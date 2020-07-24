@@ -1,6 +1,6 @@
 <mat-toolbar>Login</mat-toolbar>
 <section fxLayoutAlign="center" fxLayout="column" fxLayoutGap="10px" class="signup-form">
-  <form *ngIf="!waitingAuth" fxFlex fxLayoutAlign="center center" fxLayout="column" fxLayoutGap="10px"
+  <form *ngIf="loadingState$ | async" fxFlex fxLayoutAlign="center center" fxLayout="column" fxLayoutGap="10px"
   #form="ngForm" (ngSubmit)="onSubmit(form)">
     <mat-form-field fxFlex>
       <mat-label>Your e-mail</mat-label>
@@ -39,7 +39,7 @@
       type="submit"
       color="primary">Login <mat-icon>login</mat-icon></button>
   </form>
-  <mat-card  class="spinner" fxLayoutAlign="center"  fxFlex="100px" *ngIf="waitingAuth" >
+  <mat-card  class="spinner" fxLayoutAlign="center"  fxFlex="100px" *ngIf="!loadingState$" >
     <mat-spinner [diameter]="50"></mat-spinner>
   </mat-card>
 </section>

@@ -51,6 +51,8 @@ export class AuthService {
     this.afAuth
       .signInWithEmailAndPassword(authData.email, authData.password)
       .then( (result) => {
+        let u: User = result.user;
+        console.log(result)
         this.loginSuccess( );
       })
       .catch( (err) => {
